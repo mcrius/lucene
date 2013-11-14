@@ -1,4 +1,4 @@
-package lucenetest;
+package vasil.georgiev;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -69,18 +69,15 @@ public class LuceneTest {
             for (Map.Entry<String, Integer> entry : termFrequencies.entrySet()) {
                 String string = entry.getKey();
                 Integer integer = entry.getValue();
-                System.out.println(String.format("Term: %s, Freq: %s \n", string, integer));
+            //    System.out.println(String.format("Term: %s, Freq: %s \n", string, integer));
             }
-            
-            double idf = t.getInverseDocumentFrequency(reader, "title", "lucene");
-            
+            String term = "lucene";
+            double idf = t.getInverseDocumentFrequency(reader, "title", term);
+            double tf = termFrequencies.get(term);
+            double tfidf = tf * idf;
+            System.out.println("TF-IDF(" + docId + ", " + "lucene" + ")=" + tfidf);
         }
         
-        
-        
-
-        // reader can only be closed when there
-        // is no need to access the documents any more.
         reader.close();
     }
 
@@ -100,6 +97,5 @@ public class LuceneTest {
         doc.add(new Field("title", title, type));
         w.addDocument(doc);
     }
-    
-
 }
+    

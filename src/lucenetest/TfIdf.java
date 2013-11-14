@@ -1,14 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package lucenetest;
+package vasil.georgiev;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.lucene.index.IndexReader;
@@ -52,6 +46,6 @@ public class TfIdf {
     public double getInverseDocumentFrequency(IndexReader reader, String field, String fieldValue) throws IOException {
         int docFreq = reader.docFreq(new Term(field, fieldValue));
         int numDocs = reader.maxDoc();
-        return Math.log10((double) numDocs / docFreq);
+        return Math.log((double) numDocs / docFreq);
     }
 }
